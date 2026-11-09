@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>Midnight Muscle Studio — Earn Your Strength</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f4f1ec; --muted:#aaa6a1; --bg:#0b0b0d; --panel:#141416; --line:#29282a; --accent:#d0ff42; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Arial, Helvetica, sans-serif; line-height:1.55; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1120px, calc(100% - 44px)); margin:auto; }
+    .eyebrow { color:var(--accent); font-size:.72rem; font-weight:800; letter-spacing:.19em; text-transform:uppercase; }
+    header { position:absolute; z-index:2; inset:0 0 auto; border-bottom:1px solid #ffffff1c; }
+    nav { height:82px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:12px; font-size:.86rem; font-weight:900; letter-spacing:.08em; line-height:1.1; text-transform:uppercase; }
+    .brand-mark { display:grid; place-items:center; width:38px; height:38px; border:1px solid var(--accent); color:var(--accent); font-size:1.1rem; }
+    .nav-links { display:flex; gap:30px; align-items:center; color:#d1ceca; font-size:.83rem; }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 21px; background:var(--accent); color:#10110b; font-size:.76rem; font-weight:900; letter-spacing:.08em; text-transform:uppercase; transition:transform .2s, background .2s; }
+    .button:hover { transform:translateY(-2px); background:#e2ff81; }
+    .hero { min-height:690px; padding:165px 0 90px; display:flex; align-items:center; position:relative; overflow:hidden; background:radial-gradient(ellipse at 78% 48%, #373536 0, #1b1a1c 25%, #0b0b0d 67%); }
+    .hero:after { content:""; position:absolute; right:4%; top:15%; width:42vw; height:75%; opacity:.28; background:repeating-linear-gradient(115deg, transparent 0 34px, #6e6b69 35px 36px); mask-image:linear-gradient(90deg,transparent,#000); }
+    .hero-copy { max-width:640px; position:relative; z-index:1; }
+    h1 { margin:18px 0 22px; font-size:clamp(3.4rem, 8vw, 6.5rem); line-height:.91; letter-spacing:-.075em; text-transform:uppercase; }
+    h1 span { color:var(--accent); }
+    .hero p { max-width:485px; color:#c2bfbc; font-size:1.08rem; }
+    .hero-actions { display:flex; gap:22px; align-items:center; margin-top:32px; }
+    .text-link { font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .text-link span { color:var(--accent); padding-left:7px; }
+    .hero-note { margin-top:54px; color:#918e8b; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; }
+    section { padding:100px 0; }
+    .section-head { max-width:650px; margin-bottom:42px; }
+    h2 { margin:10px 0 14px; font-size:clamp(2.2rem, 5vw, 3.7rem); line-height:1; letter-spacing:-.06em; text-transform:uppercase; }
+    .section-head p, .muted { color:var(--muted); }
+    .services { background:#111113; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .card { min-height:235px; padding:27px; background:var(--panel); border:1px solid var(--line); }
+    .card .number { color:var(--accent); font-size:.74rem; font-weight:800; letter-spacing:.12em; }
+    .card h3 { margin:45px 0 8px; font-size:1.25rem; text-transform:uppercase; }
+    .card p { margin:0; color:var(--muted); font-size:.92rem; }
+    .transformation { background:#0b0b0d; }
+    .before-after { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .person-panel { min-height:420px; position:relative; overflow:hidden; display:flex; align-items:flex-end; padding:28px; background:linear-gradient(145deg,#202022,#101012); border:1px solid var(--line); }
+    .person-panel.after { background:linear-gradient(145deg,#303329,#11130d); }
+    .person-panel:before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 38%,#6662 0,transparent 53%); }
+    .person { position:absolute; left:50%; top:43%; transform:translate(-50%,-50%); height:260px; width:180px; }
+    .head { position:absolute; top:0; left:68px; width:44px; height:52px; border-radius:48% 48% 45% 45%; background:#827d79; }
+    .torso { position:absolute; top:47px; left:40px; width:100px; height:120px; background:#77726f; border-radius:42% 42% 22% 22%; }
+    .arm { position:absolute; top:60px; width:32px; height:118px; background:#706b68; border-radius:22px; transform-origin:top; }
+    .arm.left { left:28px; transform:rotate(10deg); } .arm.right { right:25px; transform:rotate(-10deg); }
+    .leg { position:absolute; top:155px; width:42px; height:105px; background:#625e5c; border-radius:10px 10px 15px 15px; }
+    .leg.left { left:48px; } .leg.right { right:48px; }
+    .after .head { background:#b6b1a8; }
+    .after .torso { left:43px; width:94px; background:#a39e94; clip-path:polygon(18% 0,82% 0,100% 22%,83% 100%,17% 100%,0 22%); }
+    .after .arm { background:#9d988f; width:29px; }
+    .after .leg { background:#858078; width:38px; }
+    .panel-caption { position:relative; z-index:1; }
+    .panel-caption strong { display:block; font-size:1.45rem; text-transform:uppercase; }
+    .panel-caption small { color:#c1bdb7; }
+    .disclaimer { color:#77736e; font-size:.75rem; margin:14px 0 0; }
+    .reviews { background:#151517; }
+    .review-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    blockquote { margin:0; padding:27px; background:#0d0d0f; border:1px solid #2b2a2d; }
+    .stars { color:var(--accent); letter-spacing:.15em; }
+    blockquote p { color:#d2cfca; font-size:.96rem; }
+    blockquote footer { color:#8f8c88; font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .reviews-note { color:#77736e; margin-top:16px; font-size:.75rem; }
+    .cta { padding:78px 0; background:var(--accent); color:#10110b; }
+    .cta-inner { display:flex; align-items:center; justify-content:space-between; gap:30px; }
+    .cta .eyebrow { color:#343c13; }
+    .cta h2 { max-width:570px; margin-bottom:0; }
+    .cta .button { background:#111; color:#f5f2ed; white-space:nowrap; }
+    .contact { padding:65px 0; }
+    .contact-row { display:flex; justify-content:space-between; gap:30px; align-items:center; color:#aaa6a1; font-size:.85rem; }
+    .contact-row strong { color:var(--ink); letter-spacing:.1em; text-transform:uppercase; }
+    .contact-row a { color:var(--accent); }
+    @media (max-width:720px) {
+      .nav-links a:not(.button) { display:none; }
+      .nav-links { gap:0; }
+      .hero { min-height:650px; }
+      .hero:after { right:-30%; width:90vw; opacity:.17; }
+      section { padding:74px 0; }
+      .cards,.review-grid { grid-template-columns:1fr; }
+      .card { min-height:190px; }
+      .card h3 { margin-top:30px; }
+      .before-after { gap:10px; }
+      .person-panel { min-height:330px; padding:17px; }
+      .person { transform:translate(-50%,-50%) scale(.78); }
+      .panel-caption strong { font-size:1.15rem; }
+      .cta-inner,.contact-row { align-items:flex-start; flex-direction:column; }
+    }
+    @media (max-width:430px) { .wrap { width:min(100% - 30px,1120px); } .brand { font-size:.72rem; } .brand-mark { width:33px;height:33px; } .before-after { grid-template-columns:1fr; } .person-panel { min-height:380px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#top"><span class="brand-mark">MM</span><span>Midnight Muscle<br>Studio</span></a>
+      <div class="nav-links"><a href="#training">Training</a><a href="#stories">Stories</a><a class="button" href="#contact">Start here</a></div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-copy">
+        <div class="eyebrow">Personal training · Built around you</div>
+        <h1>Earn your<br><span>strength.</span></h1>
+        <p>Focused coaching for real life. Build a stronger body, a steadier routine, and the confidence to keep showing up.</p>
+        <div class="hero-actions"><a class="button" href="#contact">Book a first session</a><a class="text-link" href="#training">Explore training <span>↘</span></a></div>
+        <div class="hero-note">No shortcuts. No judgment. Just progress.</div>
+      </div>
+    </section>
+
+    <section class="services" id="training">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">The work</div><h2>Train with purpose.</h2><p>Whether you’re new to lifting or ready to break through a plateau, your plan starts with where you are today.</p></div>
+        <div class="cards">
+          <article class="card"><div class="number">01 / ONE-TO-ONE</div><h3>Personal training</h3><p>Individual coaching and a practical strength plan shaped around your goals and schedule.</p></article>
+          <article class="card"><div class="number">02 / FOUNDATIONS</div><h3>Build the basics</h3><p>Learn confident movement, good technique, and habits you can carry beyond the studio.</p></article>
+          <article class="card"><div class="number">03 / MOMENTUM</div><h3>Get consistent</h3><p>Accountability and adaptable programming to help you keep making progress over time.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="transformation" id="stories">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Progress takes practice</div><h2>Picture your next chapter.</h2><p>Every starting point is different. With steady training and support, you can work toward feeling stronger and moving with more confidence.</p></div>
+        <div class="before-after" aria-label="Illustrative before and after fitness journey">
+          <div class="person-panel">
+            <div class="person" aria-hidden="true"><span class="head"></span><span class="torso"></span><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span></div>
+            <div class="panel-caption"><strong>Before</strong><small>Finding the starting line</small></div>
+          </div>
+          <div class="person-panel after">
+            <div class="person" aria-hidden="true"><span class="head"></span><span class="torso"></span><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span></div>
+            <div class="panel-caption"><strong>After</strong><small>Stronger, fitter, more confident</small></div>
+          </div>
+        </div>
+        <p class="disclaimer">Illustrative silhouettes, not a real client or a guaranteed result. Progress varies from person to person.</p>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Words from the floor</div><h2>Show up. Feel the difference.</h2></div>
+        <div class="review-grid">
+          <blockquote><div class="stars">★★★★★</div><p>“I finally feel comfortable in the weight room. The coaching is focused, encouraging, and never intimidating.”</p><footer>— Jamie R.</footer></blockquote>
+          <blockquote><div class="stars">★★★★★</div><p>“The plan fits my actual life. I’m getting stronger week by week and I look forward to training.”</p><footer>— Morgan T.</footer></blockquote>
+          <blockquote><div class="stars">★★★★★</div><p>“Clear guidance, good energy, and no gimmicks. I’ve built a routine I can stick with.”</p><footer>— Alex K.</footer></blockquote>
+        </div>
+        <p class="reviews-note">Sample testimonials for website mockup only. Replace with real client reviews before publishing.</p>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="wrap cta-inner"><div><div class="eyebrow">Your first step</div><h2>Start where you are. Get stronger from here.</h2></div><a class="button" href="mailto:hello@midnightmusclestudio.example">Book a consultation ↗</a></div>
+    </section>
+  </main>
+  <footer class="contact"><div class="wrap contact-row"><strong>Midnight Muscle Studio</strong><span>Personal training, on your terms.</span><a href="mailto:hello@midnightmusclestudio.example">hello@midnightmusclestudio.example</a><span>© 2026</span></div></footer>
+</body>
+</html>
